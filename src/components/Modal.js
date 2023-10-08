@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import css from '../styles.module.css';
 
-export function Modal(props) {
+export function Modal({ onClose, largeImageURL }) {
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.code === 'Escape') {
-        props.onClose();
+        onClose();
       }
     };
 
@@ -14,12 +14,12 @@ export function Modal(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [props.onClose]);
+  }, [onClose]);
 
   return (
-    <div className={css.Overlay} onClick={props.onClose}>
+    <div className={css.Overlay} onClick={onClose}>
       <div className={css.Modal}>
-        <img src={props.largeImageURL} alt="img" />
+        <img src={largeImageURL} alt="img" />
       </div>
     </div>
   );
